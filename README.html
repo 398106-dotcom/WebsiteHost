@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebsiteHost README</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f6f8; color: #333; line-height: 1.6; padding: 20px; }
+        h1, h2 { color: #2c3e50; }
+        h1 { text-align: center; margin-bottom: 20px; }
+        h2 { margin-top: 30px; border-bottom: 2px solid #3498db; padding-bottom: 5px; }
+        p, li { margin-bottom: 10px; font-size: 1.05em; }
+        a { color: #3498db; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        ul { margin-left: 20px; }
+        code { background: #e8e8e8; padding: 2px 5px; border-radius: 3px; font-family: Consolas, monospace; }
+        .container { max-width: 900px; margin: auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        footer { margin-top: 60px; text-align: center; font-size: 0.9em; color: #7f8c8d; }
+        #versionLabel { font-weight: bold; color: #27ae60; }
+        .powered-banner {
+            text-align: center;
+            padding: 10px 0;
+            background: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+            margin-top: 40px;
+            font-size: 0.95em;
+            color: #2c3e50;
+            font-weight: bold;
+            position: relative;
+            bottom: -50px;  /* start below */
+            opacity: 0;      /* invisible at start */
+            transition: bottom 0.6s ease-in-out, opacity 0.6s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="versionLabel">Loading version...</h1>
+
+        <p><strong>A lightweight, multi-site HTTP server for local testing, with optional HTTPS support.</strong></p>
+        <p>Created by: <span id="author">Loading...</span></p>
+
+        <h2>Features</h2>
+        <ul>
+            <li>Host multiple local sites with custom domains.</li>
+            <li>Automatic HTML footer injection (safe banner iframe).</li>
+            <li>Optional HTTPS support with PFX certificates.</li>
+            <li>Logs all requests and errors in a simple GUI.</li>
+            <li>Auto-loads sites and certificates from <code>sites.json</code>.</li>
+            <li>Version label shown in the GUI.</li>
+            <li>Simple navigation and live reload support (planned for future versions).</li>
+        </ul>
+
+        <h2>Getting Started</h2>
+        <ol>
+            <li>Place the <code>WebsiteHost.exe</code> file in a folder of your choice.</li>
+            <li>Run <code>WebsiteHost.exe</code>. (Administrator privileges recommended for low-numbered ports)</li>
+            <li>Add a site:
+                <ul>
+                    <li>Click "Add Site".</li>
+                    <li>Select the folder for your site, or use the <code>site1</code> folder.</li>
+                    <li>Enter a local domain (e.g., <code>site1.localhost</code>).</li>
+                </ul>
+            </li>
+            <li>Optional: Add HTTPS:
+                <ul>
+                    <li>Click "Pick HTTPS Cert".</li>
+                    <li>Select your PFX certificate and enter its password.</li>
+                </ul>
+            </li>
+            <li>Start the server:
+                <ul>
+                    <li>Click "Start Server".</li>
+                    <li>Your sites are now available at the domain(s) you entered.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <!-- Powered by banner -->
+        <div class="powered-banner" id="poweredBanner">
+            Powered by WebsiteHost
+        </div>
+
+        <footer>
+            Visit: <a id="website" href="#">Loading...</a> | Enjoy hosting your local sites!
+        </footer>
+    </div>
+
+    <script>
+    const config = {
+        version: "V5.3 Beta (2026)",
+        author: "Gavin Codework",
+        website: "https://php-testing.fwh.is"
+    };
+
+    document.getElementById('versionLabel').innerText = config.version;
+    document.getElementById('author').innerText = config.author;
+    document.getElementById('website').href = config.website;
+    document.getElementById('website').innerText = config.website;
+
+    // Animate the powered banner
+    window.addEventListener("load", () => {
+        const banner = document.getElementById("poweredBanner");
+        if (banner) {
+            banner.style.bottom = "0";   // slide up
+            banner.style.opacity = "1";  // fade in
+        }
+    });
+    </script>
+</body>
+</html>
